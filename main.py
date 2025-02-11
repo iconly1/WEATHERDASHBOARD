@@ -22,8 +22,8 @@ if st.button("Get Weather"):
         weather_df = prepare_weather_data(weather_data)
         st.dataframe(weather_df)
         
-        # Plot temperature trend (dummy data for now)
+        # Plot temperature trend
         st.subheader("Temperature Trend")
-        plot_temperature(weather_df)  # Replace with real trend data later
+        plot_temperature(weather_df)
 
         st.success("Weather data loaded successfully!")
