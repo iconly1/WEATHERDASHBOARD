@@ -29,3 +29,8 @@ def get_weather(city):
     except requests.exceptions.RequestException as e:
         logging.error(f"Error fetching weather data: {e}")
         return {"error": "Could not fetch weather data"}
+
+if __name__ == "__main__":
+    city = input("Enter the city name: ")
+    weather_data = get_weather(city)
+    print(weather_data)
