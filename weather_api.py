@@ -1,6 +1,7 @@
 import requests
 import os
 import logging
+import streamlit as st
 
 API_KEY = os.getenv("OPENWEATHER_API_KEY", "your_default_api_key_here")
 BASE_URL = "https://api.openweathermap.org/data/2.5/weather"
@@ -30,7 +31,13 @@ def get_weather(city):
         logging.error(f"Error fetching weather data: {e}")
         return {"error": "Could not fetch weather data"}
 
-if __name__ == "__main__":
-    city = input("Enter the city name: ")
+# Streamlit app
+st.title("Weather Dashboard")
+
+city = st.text_input("Enter the city name:")
+if city:
     weather_data = get_weather(city)
-    print(weather_data)
+    if "error" in weather_data:
+        st.error(weather_data["error"])
+    else:
+        st.write(weather_data)
