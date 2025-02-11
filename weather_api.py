@@ -31,6 +31,18 @@ def get_weather(city):
         logging.error(f"Error fetching weather data: {e}")
         return {"error": "Could not fetch weather data"}
 
+def celsius_to_fahrenheit(celsius):
+    """
+    Convert Celsius to Fahrenheit.
+
+    Parameters:
+    celsius (float): Temperature in Celsius.
+
+    Returns:
+    float: Temperature in Fahrenheit.
+    """
+    return (celsius * 9/5) + 32
+
 # Streamlit app
 st.title("Weather Dashboard")
 
@@ -40,4 +52,7 @@ if city:
     if "error" in weather_data:
         st.error(weather_data["error"])
     else:
+        temp_celsius = weather_data["main"]["temp"]
+        temp_fahrenheit = celsius_to_fahrenheit(temp_celsius)
+        st.write(f"Temperature in {city}: {temp_celsius}°C / {temp_fahrenheit}°F")
         st.write(weather_data)
